@@ -1,7 +1,7 @@
 import random
 
 items = []
-menu = ['~~Menu~~', 'add - to add items to your list', 'list - to view list', 'randomize - to get a random item', 'menu - show this menu', 'quit - to quit']
+menu = ['~~Menu~~', 'add - to add items to your list', 'delete - to remove items from your list', 'list - to view list', 'randomize - to get a random item', 'menu - show this menu', 'quit - to quit']
 
 def printMenu():
     for option in menu:
@@ -30,8 +30,14 @@ while(running):
     elif userInput == 'add':
         items.append(input('>> Item to add: '))
     elif userInput == 'list':
-        for item in items:
-            print(item)
+        for itemNum, item in enumerate(items):
+            print(f'{itemNum}: {item}')
+    elif userInput == 'delete':
+        itemNum = int(input('>> Item number to delete: '))
+        if itemNum < len(items):
+            items.pop(itemNum)
+        else:
+            print('Invalid item number')
     elif userInput == 'menu':
         printMenu()
     elif userInput == 'quit':
